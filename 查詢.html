@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>電商 Dictionary</title>
+</head>
+<body>
+    <h1>查詢</h1>
+    <input type="text" id="query" placeholder="Enter Chinese word">
+    <button onclick="search()">Search</button>
+    <p id="result"></p>
+
+    <script>
+        function search() {
+            var query = document.getElementById('query').value;
+            // 更新 Google Apps Script 的 URL，移除 [ ] 符號
+            var url = 'https://script.google.com/macros/s/AKfycbxH2yBMjBwk3Lg4XFrXLkcgOFzsxu4ZT2GvRqcC6816Qx-zWzTTq8HKftfIuUQ9cu4u/exec?q=' + encodeURIComponent(query);
+
+            fetch(url)
+                .then(response => response.text())
+                .then(text => document.getElementById('result').innerText = text)
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
